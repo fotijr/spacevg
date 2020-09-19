@@ -4,28 +4,21 @@
   </g>
 </template>
 
-<script lang="ts">
+<script>
 export default {
   name: 'Satellite',
-  props: {
-    msg: String,
-  },
-  data() {
-    return {
-      count: 0,
-    };
-  },
 };
 </script>
 
 <style scoped>
 .sat {
   fill: #f29885;
-  animation-duration: 6.25s, 6s, 6s;
+  animation-duration: 6.25s, 5s, 6s;
+  animation-delay: 0s, 6s, 11s;
   animation-name: delay-show, orbit-raising, leo;
   animation-iteration-count: 1, 1, infinite;
-  animation-timing-function: linear, linear, linear;
-  animation-fill-mode: both;
+  animation-timing-function: linear, linear;
+  animation-fill-mode: forwards;
   visibility: hidden;
 }
 
@@ -35,17 +28,19 @@ export default {
   }
   100% {
     visibility: visible;
-    transform: rotate(175deg) translateX(121px);
+    transform: rotate(175deg) translateX(151px);
   }
 }
 
 @keyframes orbit-raising {
   0% {
-    fill: green;
-    transform: rotate(175deg) translateX(121px);
+    transform: rotate(175deg) translateX(151px);
   }
-  50% {
-    transform: rotate(255deg) translateX(145px);
+  55% {
+    transform: rotate(355deg) translateX(151px);
+  }
+  75% {
+    transform: rotate(445deg) translateX(165px);
   }
   100% {
     transform: rotate(535deg) translateX(175px);
@@ -54,7 +49,6 @@ export default {
 
 @keyframes leo {
   from {
-    fill: yellow;
     transform: rotate(175deg) translateX(175px);
   }
   to {
