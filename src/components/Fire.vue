@@ -20,17 +20,7 @@ export default {
       type: Number,
       default: 0,
     },
-  },
-  setup(options) {
-    // const root = document.documentElement;
-    // root.style.setProperty('--mouse-x', e.clientX + 'px');
-    // root.style.setProperty('--mouse-y', e.clientY + 'px');
-  },
-  data() {
-    return {
-      count: 0,
-    };
-  },
+  }
 };
 </script>
 

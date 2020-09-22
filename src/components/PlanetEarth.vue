@@ -9,7 +9,7 @@
         >GitHub</a
       >
     </h5>
-    <button class="launch" @click="launch">Launch</button>
+    <button class="launch" @click="launch" :disabled="state.launched">Launch</button>
     <ul>
       <li v-for="sat in satellites">
         {{ sat.name }} <button @click="deorbit(sat)">Deorbit</button>
@@ -78,6 +78,9 @@ export default defineComponent({
       const sat = {
         name: `Sat ${satellites.value.length + 1}`,
       };
+      setTimeout(() => {
+        state.value.launched = false;
+      }, 20000);
       satellites.value.push(sat);
       state.value.launched = true;
     };
@@ -137,19 +140,9 @@ button.launch {
   text-transform: uppercase;
 }
 
-/* g.launched {
-  animation: launch 1s linear;
-  animation-fill-mode: forwards;
-} */
-
 g.processing {
   visibility: hidden;
 }
-
-/* .stars {
-  position: relative;
-  height: calc(100vh - 200px);
-} */
 
 .star {
   position: absolute;

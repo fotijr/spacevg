@@ -28,25 +28,7 @@ import Fire from './Fire.vue';
 export default defineComponent({
   name: 'FirstStage',
   components: {
-    Fire
-  },
-  setup() {
-    const state = ref({
-      launched: false,
-      orbit: false,
-    });
-    const launch = () => {
-      state.value.launched = true;
-
-      setTimeout(() => {
-        // state.value.orbit = true;
-      }, 3000);
-    };
-
-    return {
-      launch,
-      state,
-    };
+    Fire,
   },
 });
 </script>
@@ -54,6 +36,10 @@ export default defineComponent({
 <style>
 g.stage-1 {
   transform: scale(0.08) translate(-450px, -630px);
+
+  & .fire {
+    visibility: hidden;
+  }
 }
 
 g.launched .stage-1 {
@@ -62,6 +48,27 @@ g.launched .stage-1 {
   animation-timing-function: linear, linear;
   animation-fill-mode: forwards;
   animation-delay: 0s, 1.1s;
+
+  & .fire {
+    animation-name: ignition, ignition;
+    animation-duration: 1s, 0.8s;
+    animation-timing-function: linear, linear;
+    animation-fill-mode: forwards;
+    animation-delay: 0s, 1.3s;
+    animation-direction: normal;
+  }
+}
+
+@keyframes ignition {
+  0% {
+    visibility: hidden;
+  }
+  1% {
+    visibility: visible;
+  }
+  100% {
+    visibility: hidden;
+  }
 }
 
 @keyframes launch {
