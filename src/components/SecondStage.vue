@@ -104,7 +104,7 @@ g.launched .stage-2 {
     animation-duration: 2.5s, 0.8s, 1s;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
-    animation-delay: 1.2s, 12.8s, 14s;
+    animation-delay: 1.2s, 12.6s, 14s;
     animation-direction: normal;
   }
 }

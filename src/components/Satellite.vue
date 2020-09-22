@@ -1,6 +1,14 @@
 <template>
   <g class="sat" x="0" y="0">
-    <rect width="10" height="6"></rect>
+    <rect
+      class="solar-panel"
+      width="3.5"
+      height="13"
+      x="9"
+      y="-13"
+      transform="rotate(20)"
+    ></rect>
+    <rect class="body" width="9" height="6"></rect>
   </g>
 </template>
 
@@ -12,7 +20,6 @@ export default {
 
 <style scoped>
 .sat {
-  fill: #f29885;
   animation-duration: 6.25s, 5s, 6s;
   animation-delay: 0s, 6s, 11s;
   animation-name: delay-show, orbit-raising, leo;
@@ -20,6 +27,17 @@ export default {
   animation-timing-function: linear, linear;
   animation-fill-mode: forwards;
   visibility: hidden;
+  stroke-width: 0.25px;
+
+  & .body {
+    fill: #668879;
+    stroke: #3d4d4a;
+  }
+
+  & .solar-panel {
+    stroke: #f3c4ab;
+    fill: #c1681a;
+  }
 }
 
 @keyframes delay-show {
