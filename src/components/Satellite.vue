@@ -3,10 +3,9 @@
     <rect
       class="solar-panel"
       width="3.5"
-      height="13"
+      height="6"
       x="9"
-      y="-13"
-      transform="rotate(20)"
+      y="0"
     ></rect>
     <rect class="body" width="9" height="6"></rect>
   </g>
@@ -37,6 +36,20 @@ export default {
   & .solar-panel {
     stroke: #f3c4ab;
     fill: #c1681a;
+    /* Folded height of solar panel */
+    height: 6px;
+    animation-name: deploy-solar-panel;
+    animation-delay: 9s;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+  }
+}
+
+@keyframes deploy-solar-panel {
+  to {
+    /* height of deployed panel */
+    height: 13px;
+    transform: rotateZ(-45deg) translate(-6px, 8px);
   }
 }
 
@@ -46,31 +59,31 @@ export default {
   }
   100% {
     visibility: visible;
-    transform: rotate(175deg) translateX(151px);
+    transform: rotate(172deg) translateX(151px) rotateZ(90deg);
   }
 }
 
 @keyframes orbit-raising {
   0% {
-    transform: rotate(175deg) translateX(151px);
+    transform: rotate(172deg) translateX(151px) rotateZ(90deg);
   }
   55% {
-    transform: rotate(355deg) translateX(151px);
+    transform: rotate(355deg) translateX(151px) rotateZ(90deg);
   }
   75% {
-    transform: rotate(445deg) translateX(165px);
+    transform: rotate(425deg) translateX(165px) rotateZ(45deg);
   }
   100% {
-    transform: rotate(535deg) translateX(175px);
+    transform: rotate(515deg) translateX(175px);
   }
 }
 
 @keyframes leo {
   from {
-    transform: rotate(175deg) translateX(175px);
+    transform: rotate(155deg) translateX(175px);
   }
   to {
-    transform: rotate(535deg) translateX(175px);
+    transform: rotate(515deg) translateX(175px);
   }
 }
 </style>

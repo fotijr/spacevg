@@ -9,10 +9,10 @@
         >GitHub</a
       >
     </h5>
-    <button class="launch" @click="launch" :disabled="state.launched">Launch</button>
+    <button class="launch" @click="launch" :disabled="launched">Launch</button>
     <ul>
       <li v-for="sat in satellites">
-        {{ sat.name }} <button @click="deorbit(sat)">Deorbit</button>
+        {{ sat.name }} <a href="#" @click="deorbit(sat)">Deorbit</a>
       </li>
     </ul>
   </div>
@@ -23,7 +23,7 @@
     width="20"
     height="20"
   >
-    <g class="orbit" :class="state">
+    <g class="orbit" :class="{ launched }">
       <g class="earth">
         <g>
           <circle
@@ -42,6 +42,8 @@
         </g>
       </g>
       <Satellite v-for="sat in satellites" />
+      <LaunchLandingPad :x="-28" :y="-25" />
+      <LaunchLandingPad :x="44" :y="-10" />
       <SecondStage />
       <FirstStage />
     </g>
@@ -54,6 +56,7 @@ import FirstStage from './FirstStage.vue';
 import SecondStage from './SecondStage.vue';
 import Satellite from './Satellite.vue';
 import IntegratedLaunchVehicle from './IntegratedLaunchVehicle.vue';
+import LaunchLandingPad from './LaunchLandingPad.vue';
 
 export default defineComponent({
   name: 'PlanetEarth',
@@ -65,43 +68,30 @@ export default defineComponent({
     IntegratedLaunchVehicle,
     FirstStage,
     SecondStage,
+    LaunchLandingPad,
   },
-  setup() {
-    const satellites = ref([]);
-    const state = ref({
-      launched: false,
-      orbit: false,
-      processing: false,
-    });
-
-    const launch = () => {
-      const sat = {
-        name: `Sat ${satellites.value.length + 1}`,
-      };
-      setTimeout(() => {
-        state.value.launched = false;
-      }, 20000);
-      satellites.value.push(sat);
-      state.value.launched = true;
-    };
-
-    const deorbit = (sat) => {
-      const index = satellites.value.indexOf(sat);
-      if (index >= 0) {
-        satellites.value.splice(index, 1);
-      }
-    };
-
+  data() {
     return {
-      launch,
-      satellites,
-      deorbit,
-      state,
+      satellites: [],
+      launched: false,
     };
   },
   methods: {
-    launchIt() {
-      this.$refs.vehicle.launch();
+    launch() {
+      const sat = {
+        name: `Sat-${this.satellites.length + 1}`,
+      };
+      setTimeout(() => {
+        this.launched = false;
+      }, 20000);
+      this.satellites.push(sat);
+      this.launched = true;
+    },
+    deorbit(sat) {
+      const index = this.satellites.indexOf(sat);
+      if (index >= 0) {
+        this.satellites.splice(index, 1);
+      }
     },
   },
 });
@@ -118,17 +108,20 @@ div.controls {
   left: 15px;
 }
 
-li button {
+li a {
   visibility: hidden;
 }
 
-li:hover button {
+li:hover a {
   visibility: visible;
 }
 
 svg {
   width: 100%;
   height: 100%;
+  /* Prevent stars from showing on top of earth or spacecraft */
+  z-index: 1;
+  pointer-events: none;
 }
 
 g.orbit {

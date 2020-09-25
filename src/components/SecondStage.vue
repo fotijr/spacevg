@@ -60,25 +60,6 @@ export default defineComponent({
   components: {
     Fire,
   },
-  setup() {
-    const state = ref({
-      launched: false,
-      orbit: false,
-    });
-    const launch = () => {
-      state.value.launched = true;
-
-      setTimeout(() => {
-        // state.value.orbit = true;
-        this.$emit('deployed');
-      }, 3000);
-    };
-
-    return {
-      launch,
-      state,
-    };
-  },
 });
 </script>
 
@@ -92,16 +73,16 @@ g.stage-2 {
 }
 
 g.launched .stage-2 {
-  animation-name: ride-first-stage, second-stage-burn, orbit, de-orbit;
-  animation-duration: 1s, 2s, 6s, 3s;
-  animation-timing-function: linear, linear, linear, linear;
+  animation-name: ride-first-stage, second-stage-burn, orbit, de-orbit, fade-out;
+  animation-duration: 1s, 2s, 6s, 3s, 1s;
+  animation-timing-function: linear;
   animation-fill-mode: forwards;
-  animation-iteration-count: 1, 1, 2.4, 1;
-  animation-delay: 0s, 1s, 3s, 12s;
+  animation-iteration-count: 1, 1, 2.4, 1, 1;
+  animation-delay: 0s, 1s, 3s, 12s, 17s;
 
   & .fire {
     animation-name: ignition, ignition, ignition;
-    animation-duration: 2.5s, 0.8s, 1s;
+    animation-duration: 3s, 0.8s, 1s;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
     animation-delay: 1.2s, 12.6s, 14s;
@@ -112,7 +93,7 @@ g.launched .stage-2 {
 g.launched .fairing {
   animation-duration: 2s, 2s;
   animation-timing-function: linear, linear;
-  animation-fill-mode: forwards, forwards;
+  animation-fill-mode: forwards;
   animation-delay: 6s, 9s;
   animation-direction: normal, reverse;
 }
@@ -146,15 +127,21 @@ g.launched .right {
 }
 
 @keyframes second-stage-burn {
-  20% {
+  25% {
     /* burn to orbit */
-    transform: translate(70px, -123px) scale(0.08) rotate(75deg);
+    transform: translate(93px, -124px) scale(0.08) rotate(90deg);
   }
-  40% {
-    transform: translate(110px, -101px) scale(0.08) rotate(117deg);
+  50% {
+    transform: translate(135px, -90px) scale(0.08) rotate(137deg);
+  }
+  75% {
+    transform: translate(146px, -38px) scale(0.08) rotate(166deg);
+  }
+  99% {
+    transform: translate(151px, 0px) scale(0.08) rotate(180deg);
   }
   100% {
-    transform: translate(151px, -49px) scale(0.08) rotate(172deg);
+    transform: translate(151px, 0px) scale(0.08) rotate(180deg);
   }
 }
 

@@ -6,12 +6,18 @@
 }
 
 a {
-  color: #2c3e50;
+  color: #617e9b;
   text-decoration-style: dotted;
 }
 
 ul {
   list-style-type: '🛰';
+  max-height: calc(100vh - 195px);
+  overflow-y: auto;
+
+  & a {
+    margin-left: 5px;
+  }
 }
 
 li {
@@ -20,12 +26,17 @@ li {
 
 button {
   border-style: none;
-  background-color: #f7f7f7;
+  background-color: #fbfbfb;
+  font-weight: 700;
 }
 
-button:hover {
+button:hover:not([disabled]) {
   cursor: pointer;
   box-shadow: 1px 1px 2px #fff;
+}
+
+button[disabled] {
+  font-weight: 400;
 }
 
 body {
@@ -37,4 +48,13 @@ body {
   background-color: #000;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Helvetica Neue', Arial, sans-serif;
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
