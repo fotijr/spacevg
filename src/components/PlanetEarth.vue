@@ -55,17 +55,12 @@ import { defineComponent, ref } from 'vue';
 import FirstStage from './FirstStage.vue';
 import SecondStage from './SecondStage.vue';
 import Satellite from './Satellite.vue';
-import IntegratedLaunchVehicle from './IntegratedLaunchVehicle.vue';
 import LaunchLandingPad from './LaunchLandingPad.vue';
 
 export default defineComponent({
   name: 'PlanetEarth',
-  refs: {
-    vehicle: IntegratedLaunchVehicle,
-  },
   components: {
     Satellite,
-    IntegratedLaunchVehicle,
     FirstStage,
     SecondStage,
     LaunchLandingPad,

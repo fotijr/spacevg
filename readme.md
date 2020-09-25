@@ -19,3 +19,4 @@ For fun. Read the [blog post](https://fotijr.com/blog/2020/spacevg/) for more de
 - Renaming satellites
 - Highlight orbiting satellite while name is hovered
 - Deorbit animation
+- Improve fire animation
