@@ -1,5 +1,4 @@
 <template>
-  <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
   <PlanetEarth />
 </template>
 
@@ -10,17 +9,6 @@ export default defineComponent({
   name: 'App',
   components: {
     PlanetEarth,
-  },
-  setup() {
-    // const launch = () => {
-    //   count.value++;
-    // };
-
-    return {
-      // launch
-    };
-  },
+  }
 });
 </script>
-
-<style scoped></style>
