@@ -1,52 +1,27 @@
 <template>
   <g class="stage-2">
     <rect
+      class="tank"
       height="196"
-      width="87.00001"
+      width="87"
       y="248.5"
       x="4.5"
       stroke-width="1.5"
-      stroke="#000"
-      fill="#fff"
     />
     <Fire :x="0" :y="437" />
-    <path
-      class="bell"
-      d="m51.5725,463.81247l7.5,-19l25.00001,0l7.5,19l-40.00001,0z"
-    />
-    <path
-      class="bell"
-      d="m6.5725,463.81247l7.5,-19l25.00001,0l7.5,19l-40.00001,0z"
-      fill-opacity="null"
-      stroke-opacity="null"
-    />
+    <path class="bell" d="m51.5725,463.8l7.5,-19l25,0l7.5,19l-40,0z" />
+    <path class="bell" d="m6.5725,463.8l7.5,-19l25,0l7.5,19l-40,0z" />
     <path
       class="fairing right"
-      d="m-24.70498,81.16808l37.13758,-8.58557l148.8624,0l0,42.99999l-185.99999,0l0,-34.41443z"
-      fill-opacity="null"
-      stroke-opacity="null"
+      d="m-24.70498,81.16808l37.13758,-8.58557l148.8624,0l0,43l-186,0l0,-34.41443z"
       stroke-width="1.5"
-      stroke="#000"
-      fill="#fff"
     />
     <path
       class="fairing left"
-      d="m4.795,38.22012l8.18624,-37.13758l32.81375,0l0,185.99998l-40.99998,0l0,-148.8624z"
-      fill-opacity="null"
-      stroke-opacity="null"
+      d="m4.795,38.22012l8.18624,-37.13758l32.81375,0l0,186l-41,0l0,-148.8624z"
       stroke-width="1.5"
-      stroke="#000"
-      fill="#fff"
     />
-    <rect
-      class="spacecraft-body"
-      height="61"
-      width="87"
-      y="186.5"
-      x="4"
-      stroke-width="1.5"
-      stroke="#000"
-    />
+    <rect class="spacecraft-body" height="61" width="87" y="186.5" x="4" />
   </g>
 </template>
 
@@ -56,7 +31,6 @@ import Fire from './Fire.vue';
 
 export default defineComponent({
   name: 'SecondStage',
-  emits: ['deployed'],
   components: {
     Fire,
   },
@@ -66,10 +40,20 @@ export default defineComponent({
 <style>
 g.stage-2 {
   transform: translate(-36px, -85px) scale(0.08);
+}
 
-  & .fire {
-    visibility: hidden;
-  }
+g.stage-2 .tank {
+  stroke: #000;
+  fill: #fff;
+}
+
+g.stage-2 .fire {
+  visibility: hidden;
+}
+
+.fairing {
+  stroke: #000;
+  fill: #fff;
 }
 
 g.launched .stage-2 {
@@ -78,16 +62,16 @@ g.launched .stage-2 {
   animation-timing-function: linear;
   animation-fill-mode: forwards;
   animation-iteration-count: 1, 1, 2.4, 1, 1;
-  animation-delay: 0s, 1s, 3s, 12s, 17s;
+  animation-delay: 1ms, 1s, 3s, 12s, 17s;
+}
 
-  & .fire {
-    animation-name: ignition, ignition, ignition;
-    animation-duration: 3s, 0.8s, 1s;
-    animation-timing-function: linear;
-    animation-fill-mode: forwards;
-    animation-delay: 1.2s, 12.6s, 14s;
-    animation-direction: normal;
-  }
+g.launched .stage-2 .fire {
+  animation-name: ignition, re-entry, landing;
+  animation-duration: 3s, 0.8s, 1s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  animation-delay: 1.2s, 12.6s, 14s;
+  animation-direction: normal;
 }
 
 g.launched .fairing {
@@ -99,11 +83,11 @@ g.launched .fairing {
 }
 
 g.launched .left {
-  animation-name: open-left-fairing, open-left-fairing;
+  animation-name: open-left-fairing, open-lefty-fairing;
 }
 
 g.launched .right {
-  animation-name: open-right-fairing, open-right-fairing;
+  animation-name: open-right-fairing, open-righty-fairing;
 }
 
 .fairing.right {
@@ -116,6 +100,9 @@ g.launched .right {
 }
 
 @keyframes ride-first-stage {
+  0% {
+    transform: translate(-36px, -85px) scale(0.08);
+  }
   40% {
     /* max q */
     transform: translate(7px, -105px) scale(0.08) rotate(30deg);
@@ -127,6 +114,9 @@ g.launched .right {
 }
 
 @keyframes second-stage-burn {
+  0% {
+    transform: translate(40px, -124px) scale(0.08) rotate(65deg);
+  }
   25% {
     /* burn to orbit */
     transform: translate(93px, -124px) scale(0.08) rotate(90deg);
@@ -155,6 +145,9 @@ g.launched .right {
 }
 
 @keyframes de-orbit {
+  0% {
+    transform: rotate(180deg) translateX(151px) scale(0.08) rotateZ(180deg);
+  }
   40% {
     transform: rotate(200deg) translateX(151px) scale(0.08) rotateZ(52deg);
   }
@@ -186,6 +179,20 @@ g.launched .right {
   }
 }
 
+@keyframes open-lefty-fairing {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  50% {
+    /* Slide out */
+    transform: translate(-46px, 25px);
+  }
+  100% {
+    /** Slide down */
+    transform: translate(-46px, 115px);
+  }
+}
+
 @keyframes open-right-fairing {
   0% {
     transform: rotate(90deg) translate(27px, -165px);
@@ -200,7 +207,45 @@ g.launched .right {
   }
 }
 
+@keyframes open-righty-fairing {
+  0% {
+    transform: rotate(90deg) translate(27px, -165px);
+  }
+  50% {
+    /* Slide out */
+    transform: rotate(90deg) translate(27px, -202px);
+  }
+  100% {
+    /** Slide down */
+    transform: rotate(90deg) translate(139px, -202px);
+  }
+}
+
 @keyframes ignition {
+  0% {
+    visibility: hidden;
+  }
+  1% {
+    visibility: visible;
+  }
+  100% {
+    visibility: hidden;
+  }
+}
+
+@keyframes re-entry {
+  0% {
+    visibility: hidden;
+  }
+  1% {
+    visibility: visible;
+  }
+  100% {
+    visibility: hidden;
+  }
+}
+
+@keyframes landing {
   0% {
     visibility: hidden;
   }

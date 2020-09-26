@@ -137,14 +137,17 @@ g.processing {
   background-color: #fff;
   height: 1px;
   width: 1px;
+}
 
-  @for $i from 1 to 30 {
+@for $i from 1 to 30 {
+  .star {
     top: percentage(random(100));
     left: percentage(random(100));
-    &:nth-child($i) {
-      top: percentage(random(100));
-      left: percentage(random(100));
-    }
+  }
+
+  .star:nth-child($i) {
+    top: percentage(random(100));
+    left: percentage(random(100));
   }
 }
 </style>

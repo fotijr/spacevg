@@ -14,10 +14,10 @@ ul {
   list-style-type: '🛰';
   max-height: calc(100vh - 195px);
   overflow-y: auto;
+}
 
-  & a {
-    margin-left: 5px;
-  }
+ul a {
+  margin-left: 5px;
 }
 
 li {

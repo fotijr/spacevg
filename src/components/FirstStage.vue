@@ -1,21 +1,9 @@
 <template>
   <g class="stage-1">
-    <rect
-      class="tanks"
-      height="440.99999"
-      width="87.00001"
-      y="3.5"
-      x="4.5"
-    />
+    <rect class="tanks" height="441" width="87" y="3.5" x="4.5" />
     <Fire :x="0" :y="437" />
-    <path
-      class="bell"
-      d="m51.5725,463.81247l7.5,-19l25.00001,0l7.5,19l-40.00001,0z"
-    />
-    <path
-      class="bell"
-      d="m6.5725,463.81247l7.5,-19l25.00001,0l7.5,19l-40.00001,0z"
-    />
+    <path class="bell" d="m51.5725,463.81247l7.5,-19l25,0l7.5,19l-40,0z" />
+    <path class="bell" d="m6.5725,463.81247l7.5,-19l25,0l7.5,19l-40,0z" />
   </g>
 </template>
 
@@ -34,16 +22,16 @@ export default defineComponent({
 <style>
 g.stage-1 {
   transform: scale(0.08) translate(-450px, -630px);
+}
 
-  & .fire {
-    visibility: hidden;
-  }
+g.stage-1 .fire {
+  visibility: hidden;
+}
 
-  & .tanks {
-    fill: #dedede;
-    stroke: #d4d4d4;
-    stroke-width: 0.25px;
-  }
+g.stage-1 .tanks {
+  fill: #dedede;
+  stroke: #d4d4d4;
+  stroke-width: 0.25px;
 }
 
 g.launched .stage-1 {
@@ -51,23 +39,45 @@ g.launched .stage-1 {
   animation-duration: 1s, 3s, 1s;
   animation-timing-function: linear;
   animation-fill-mode: forwards;
-  animation-delay: 0s, 1.1s, 17s;
-
-  & .fire {
-    animation-name: ignition, ignition;
-    animation-duration: 1s, 1.7s;
-    animation-timing-function: linear;
-    animation-fill-mode: forwards;
-    animation-delay: 0s, 2.5s;
-    animation-direction: normal;
-  }
+  animation-delay: 1ms, 1.1s, 17s;
+  -webkit-animation-delay: 1ms, 1.1s, 17s;
+  animation-play-state: running;
 }
 
-@keyframes ignition {
+g.launched .stage-1 .fire {
+  animation-name: liftoff, s1-landing;
+  animation-duration: 1.0s, 1.7s;
+  animation-timing-function: linear, linear;
+  animation-fill-mode: forwards, forwards;
+  animation-delay: 0s, 2.5s;
+  animation-iteration-count: 1, 1;
+  animation-direction: normal, normal;
+  animation-play-state: running, running;
+}
+
+@keyframes liftoff {
   0% {
     visibility: hidden;
   }
   1% {
+    visibility: visible;
+  }
+  99% {
+    visibility: visible;
+  }
+  100% {
+    visibility: hidden;
+  }
+}
+
+@keyframes s1-landing {
+  0% {
+    visibility: hidden;
+  }
+  1% {
+    visibility: visible;
+  }
+  99% {
     visibility: visible;
   }
   100% {
@@ -76,6 +86,9 @@ g.launched .stage-1 {
 }
 
 @keyframes launch {
+  0% {
+    transform: scale(0.08) translate(-450px, -630px);
+  }
   40% {
     /* max q */
     transform: translate(-10px, -75px) scale(0.08) rotate(30deg);
@@ -87,6 +100,9 @@ g.launched .stage-1 {
 }
 
 @keyframes land {
+  0% {
+    transform: translate(10px, -110px) scale(0.08) rotate(65deg);
+  }
   40% {
     transform: translate(44px, -84px) scale(0.08) rotate(33deg);
   }
