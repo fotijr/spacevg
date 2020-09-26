@@ -1,12 +1,6 @@
 <template>
   <g class="sat" x="0" y="0">
-    <rect
-      class="solar-panel"
-      width="3.5"
-      height="6"
-      x="9"
-      y="0"
-    ></rect>
+    <rect class="solar-panel" width="3.5" height="6" x="9" y="0"></rect>
     <rect class="body" width="9" height="6"></rect>
   </g>
 </template>
@@ -23,29 +17,32 @@ export default {
   animation-delay: 0s, 6s, 11s;
   animation-name: delay-show, orbit-raising, leo;
   animation-iteration-count: 1, 1, infinite;
-  animation-timing-function: linear, linear;
-  animation-fill-mode: forwards;
+  animation-timing-function: linear, linear, linear;
+  animation-fill-mode: forwards, forwards, forwards;
   visibility: hidden;
   stroke-width: 0.25px;
+}
 
-  & .body {
-    fill: #668879;
-    stroke: #3d4d4a;
-  }
+.sat .body {
+  fill: #668879;
+  stroke: #3d4d4a;
+}
 
-  & .solar-panel {
-    stroke: #f3c4ab;
-    fill: #c1681a;
-    /* Folded height of solar panel */
-    height: 6px;
-    animation-name: deploy-solar-panel;
-    animation-delay: 9s;
-    animation-duration: 3s;
-    animation-fill-mode: forwards;
-  }
+.sat .solar-panel {
+  stroke: #f3c4ab;
+  fill: #c1681a;
+  /* Folded height of solar panel */
+  height: 6px;
+  animation-name: deploy-solar-panel;
+  animation-delay: 9s;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
 }
 
 @keyframes deploy-solar-panel {
+  from {
+    height: 6px;
+  }
   to {
     /* height of deployed panel */
     height: 13px;
@@ -54,12 +51,15 @@ export default {
 }
 
 @keyframes delay-show {
+  0% {
+    visibility: hidden;
+  }
   99% {
     visibility: hidden;
   }
   100% {
     visibility: visible;
-    transform: rotate(172deg) translateX(151px) rotateZ(90deg);
+    transform: rotate(145deg) translateX(151px) rotateZ(90deg);
   }
 }
 
@@ -74,7 +74,7 @@ export default {
     transform: rotate(425deg) translateX(165px) rotateZ(45deg);
   }
   100% {
-    transform: rotate(515deg) translateX(175px);
+    transform: rotate(515deg) translateX(175px) rotateZ(0deg);
   }
 }
 

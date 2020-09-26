@@ -1,8 +1,8 @@
 module.exports = {
-    plugins: [
-      require('postcss-for'),
-      require('postcss-nested'),
-      require('postcss-random'),
-      require('postcss-percentage')
-    ]
-  }
+  plugins: [
+    require('autoprefixer'),
+    require('postcss-for'),
+    require('postcss-random'),
+    require('postcss-percentage')
+  ]
+}

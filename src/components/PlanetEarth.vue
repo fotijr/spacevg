@@ -55,17 +55,12 @@ import { defineComponent, ref } from 'vue';
 import FirstStage from './FirstStage.vue';
 import SecondStage from './SecondStage.vue';
 import Satellite from './Satellite.vue';
-import IntegratedLaunchVehicle from './IntegratedLaunchVehicle.vue';
 import LaunchLandingPad from './LaunchLandingPad.vue';
 
 export default defineComponent({
   name: 'PlanetEarth',
-  refs: {
-    vehicle: IntegratedLaunchVehicle,
-  },
   components: {
     Satellite,
-    IntegratedLaunchVehicle,
     FirstStage,
     SecondStage,
     LaunchLandingPad,
@@ -142,14 +137,17 @@ g.processing {
   background-color: #fff;
   height: 1px;
   width: 1px;
+}
 
-  @for $i from 1 to 30 {
+@for $i from 1 to 30 {
+  .star {
     top: percentage(random(100));
     left: percentage(random(100));
-    &:nth-child($i) {
-      top: percentage(random(100));
-      left: percentage(random(100));
-    }
+  }
+
+  .star:nth-child($i) {
+    top: percentage(random(100));
+    left: percentage(random(100));
   }
 }
 </style>
