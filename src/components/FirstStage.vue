@@ -45,7 +45,7 @@ g.launched .stage-1 {
 }
 
 g.launched .stage-1 .fire {
-  animation-name: liftoff, s1-landing;
+  animation-name: liftoff, s1Landing;
   animation-duration: 1.0s, 1.7s;
   animation-timing-function: linear, linear;
   animation-fill-mode: forwards, forwards;
@@ -70,7 +70,7 @@ g.launched .stage-1 .fire {
   }
 }
 
-@keyframes s1-landing {
+@keyframes s1Landing {
   0% {
     visibility: hidden;
   }
