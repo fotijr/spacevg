@@ -11,13 +11,19 @@ a {
 }
 
 ul {
-  list-style-type: '🛰';
+  list-style: none;
   max-height: calc(100vh - 195px);
   overflow-y: auto;
 }
 
 ul a {
   margin-left: 5px;
+}
+
+li:before {
+  content: '\1F6F0';
+  margin-left: -30px;
+  margin-right: 8px;
 }
 
 li {

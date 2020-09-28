@@ -20,7 +20,7 @@ export default {
       type: Number,
       default: 0,
     },
-  }
+  },
 };
 </script>
 
@@ -28,7 +28,6 @@ export default {
 .fire {
   height: 100px;
   width: 100px;
-  border-bottom-width: var(--x);
 }
 
 .flame {
