@@ -45,8 +45,10 @@ g.launched .stage-1 {
 }
 
 g.launched .stage-1 .fire {
-  animation-name: liftoff, s1Landing;
-  animation-duration: 1.0s, 1.7s;
+  /* The second animation worked in dev server but was being stripped out of the build. */
+  /* This seems like a Vue bug. To reproduce, remove the !important flag below. */
+  animation-name: liftoff, firstLanding !important;
+  animation-duration: 1s, 1.7s;
   animation-timing-function: linear, linear;
   animation-fill-mode: forwards, forwards;
   animation-delay: 0s, 2.5s;
@@ -70,7 +72,7 @@ g.launched .stage-1 .fire {
   }
 }
 
-@keyframes s1Landing {
+@keyframes firstLanding {
   0% {
     visibility: hidden;
   }
